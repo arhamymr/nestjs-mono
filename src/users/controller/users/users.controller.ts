@@ -4,7 +4,6 @@ import {
   Get,
   Post,
   Param,
-  Query,
   UsePipes,
   ValidationPipe,
   ParseIntPipe,
@@ -30,10 +29,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  getUserById(
-    @Param('id') idString: string,
-    @Param('id', ParseIntPipe) id: number,
-  ) {
+  getUserById(@Param('id', ParseIntPipe) id: number) {
     return this.userService.fetchUserById(id);
   }
 
