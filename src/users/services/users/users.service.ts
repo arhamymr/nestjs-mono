@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/typeorm';
-import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
+import { CreateUserDto, UpdateUserDto } from 'src/users/dtos/CreateUser.dto';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -14,8 +14,8 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  createUser(userData: CreateUserDto) {
-    const newUser = this.userRepository.create(userData);
+  async createUser(userData: CreateUserDto) {
+    const newUser = await this.userRepository.create(userData);
     return this.userRepository.save(newUser);
   }
 
@@ -25,7 +25,11 @@ export class UsersService {
     throw new HttpException('data not found', HttpStatus.NOT_FOUND);
   }
 
-  deleteUser(id: number) {
-    return this.userRepository.delete(id);
+  async deleteUser(id: number) {
+    return await this.userRepository.delete(id);
+  }
+
+  async updateUser(id: number, body: UpdateUserDto) {
+    return await this.userRepository.update(id, body);
   }
 }
