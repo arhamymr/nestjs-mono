@@ -19,8 +19,7 @@ export class UsersController {
   constructor(private userService: UsersService) { }
 
   @Get()
-  getUsers(@Query('sortBy') sortBy: string) {
-    console.log(sortBy);
+  getUsers() {
     return this.userService.fetchUsers();
   }
 
