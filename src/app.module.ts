@@ -1,7 +1,9 @@
+import { LoggerModule } from './logger/logger.module';
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { PostgresModule } from './config/database/postgres.module';
+import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -19,6 +21,7 @@ import * as Joi from 'joi';
     }),
     UsersModule,
     PostgresModule,
+    AuthModule,
   ],
   controllers: [],
 })

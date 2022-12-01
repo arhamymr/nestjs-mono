@@ -9,7 +9,9 @@ import {
   ParseIntPipe,
   Delete,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/strategy/jwt-auth.guard';
 import { CreateUserDto, UpdateUserDto } from 'src/users/dtos/CreateUser.dto';
 import { UsersService } from 'src/users/services/users/users.service';
 
@@ -22,6 +24,7 @@ export class UsersController {
     return this.userService.fetchUsers();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('create')
   @UsePipes(new ValidationPipe())
   createUser(@Body() userData: CreateUserDto) {
@@ -42,5 +45,10 @@ export class UsersController {
   @UsePipes(ValidationPipe)
   updateUser(@Param('id') id: number, @Body() body: UpdateUserDto) {
     return this.userService.updateUser(id, body);
+  }
+
+  @Post('login')
+  login(@Body() body) {
+    return this.userService.login(body);
   }
 }
