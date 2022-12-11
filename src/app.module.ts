@@ -1,28 +1,10 @@
-import { LoggerModule } from './logger/logger.module';
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
-import { ConfigModule } from '@nestjs/config';
-import { PostgresModule } from './config/database/postgres.module';
+import { PrismaModule } from 'prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
-import * as Joi from 'joi';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: '.env',
-      validationSchema: Joi.object({
-        DB_HOST: Joi.string().required(),
-        DB_PORT: Joi.number().required(),
-        DB_USERNAME: Joi.string().required(),
-        DB_PASSWORD: Joi.string().required(),
-        DB_NAME: Joi.string().required(),
-      }),
-    }),
-    UsersModule,
-    PostgresModule,
-    AuthModule,
-  ],
+  imports: [AuthModule, PrismaModule, UsersModule],
   controllers: [],
 })
-export class AppModule { }
+export class AppModule {}

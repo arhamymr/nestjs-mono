@@ -1,21 +1,27 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Request } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard } from './strategy/jwt-auth.guard';
+import { AuthDto } from './dto/auth.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
+  @Post('register')
+  signup(@Body() authData: AuthDto) {
+    return this.authService.signup(authData);
+  }
+
+  @UseGuards(AuthGuard('local'))
   @Post('login')
-  async login(@Body() body, @Req() req, @Res() res) {
-    const auth = await this.authService.login(body)
-    res.status(auth.status).json(auth.msg);
+  login(@Request() req) {
+    return this.authService.login(req.user);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('register')
-  async register(@Body() body, @Req() req, @Res() res) {
-    const auth = await this.authService.register(body)
-    res.status(auth.status).json(auth.msg);
+  @Post('refresh_token')
+  refreshToken() {
+    return this.authService.refreshToken();
   }
 }
