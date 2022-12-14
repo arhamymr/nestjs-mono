@@ -8,12 +8,12 @@ export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
   @Get()
-  getUser() {
-    return this.userService.getUser();
+  findAll() {
+    return this.userService.findAll();
   }
 
   @Delete(':id')
-  async deleteUser(@Param('id') id: string) {
-    return this.userService.deleteUser(id);
+  async remove(@Param('id') id: string) {
+    return this.userService.remove(id);
   }
 }
