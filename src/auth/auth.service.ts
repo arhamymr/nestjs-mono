@@ -1,19 +1,19 @@
 import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
-import { AuthDto } from './dto/auth.dto';
+import { IAuth } from './auth.interfaces';
 import { JwtService } from '@nestjs/jwt';
 import * as argon from 'argon2';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwtService: JwtService) {}
+  constructor(private prisma: PrismaService, private jwtService: JwtService) { }
 
   async findUsers(email: string) {
     return await this.prisma.user.findUnique({ where: { email } });
   }
 
-  async signup(authData: AuthDto) {
-    const { email, password } = authData;
+  async signup(authData: IAuth) {
+    const { email, password, name } = authData;
 
     const foundUser = await this.findUsers(email);
 
@@ -23,8 +23,9 @@ export class AuthService {
 
     const hashedPassword = await this.hashPassword(password);
 
-    await this.prisma.user.create({
+    const data = await this.prisma.user.create({
       data: {
+        name,
         email,
         hashedPassword,
       },
@@ -34,6 +35,7 @@ export class AuthService {
 
     return {
       status: HttpStatus.OK,
+      data,
       message,
     };
   }
@@ -84,7 +86,7 @@ export class AuthService {
     return await argon.verify(hash, password);
   }
 
-  async signToken(payload: { id: string; email: string }) {
+  async signToken(payload: { id: number; email: string }) {
     return await this.jwtService.sign(payload);
   }
 }

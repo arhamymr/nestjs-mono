@@ -3,11 +3,11 @@ import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async findAll() {
     const users = await this.prisma.user.findMany({
-      select: { id: true, email: true },
+      select: { id: true, email: true, name: true },
     });
 
     if (!users.length) {
@@ -20,7 +20,7 @@ export class UsersService {
     };
   }
 
-  async remove(id: string) {
+  async remove(id: number) {
     await this.prisma.user.delete({ where: { id } });
     return {
       status: HttpStatus.OK,
