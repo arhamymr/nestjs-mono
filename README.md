@@ -2,7 +2,7 @@
 
 Experimental Backend API, i created this project using nest.js for learning implements backend stuff
 
-#### common Feature 
+#### Common Feature 
 - Authentication
 - CRUD 
 - Media (file management)
