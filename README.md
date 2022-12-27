@@ -12,7 +12,6 @@ Experimental Backend API, i created this project using nest.js for learning impl
 - Kafka
 
 #### Databases 
-- ORM
 - MySQL
 - Prisma (ORM)
 
