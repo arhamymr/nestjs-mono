@@ -1,13 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
-import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from 'firebase/storage';
+import { ConfigService } from '@nestjs/config';
+// import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class StorageService extends FirebaseService {
   public storage;
 
-  constructor() {
-    super();
+  constructor(public readonly configService: ConfigService) {
+    super(configService);
     this.storage = getStorage(this.app);
   }
 

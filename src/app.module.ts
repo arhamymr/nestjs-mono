@@ -8,13 +8,16 @@ import { G2gArticleModule } from './post/post.module';
 import { MediaModule } from './media/media.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     FirebaseModule,
     KafkaModule,
     ServeStaticModule.forRoot({
       renderPath: join(__dirname, '..', 'client'),
+    }),
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
     AuthModule,
     PrismaModule,

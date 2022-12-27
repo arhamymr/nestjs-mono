@@ -4,14 +4,15 @@ import { StorageService } from 'src/firebase/storage.service';
 @Injectable()
 export class MediaService {
   constructor(private storageService: StorageService) { }
+
   async upload(file: Buffer, filename: string) {
-    const uploaded = await this.storageService.upload(
-      file,
-      'assets/' + filename,
-    );
+    const ref = 'assets/' + filename;
+    const uploaded = await this.storageService.upload(file, ref);
 
     return {
-      file: uploaded,
+      ref,
+      filename,
+      url: uploaded,
     };
   }
 
