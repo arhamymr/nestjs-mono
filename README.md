@@ -2,21 +2,19 @@
 
 Experimental Backend API, i created this project using nest.js for learning implements backend stuff
 
-## Feature Include
-
-### common Feature 
-- JSON Web Token
+#### common Feature 
 - Authentication
 - CRUD 
 - Media (file management)
+- JSON Web Token
 
-### Message Broker 
+#### Message Broker 
 - Kafka
 
-### Databases 
+#### Databases 
 - ORM
 - MySQL
 - Prisma (ORM)
 
-### Firebase
+#### Firebase
 - Storage
