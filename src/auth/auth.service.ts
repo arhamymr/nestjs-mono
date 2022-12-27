@@ -21,13 +21,13 @@ export class AuthService {
       throw new BadRequestException('Email already exists');
     }
 
-    const hashedPassword = await this.hashPassword(password);
+    const hashed_password = await this.hashPassword(password);
 
     const data = await this.prisma.user.create({
       data: {
         name,
         email,
-        hashedPassword,
+        hashed_password,
       },
     });
 
@@ -49,7 +49,7 @@ export class AuthService {
 
     const isMatch = await this.comparePassword({
       password,
-      hash: foundUser.hashedPassword,
+      hash: foundUser.hashed_password,
     });
 
     if (!isMatch) {

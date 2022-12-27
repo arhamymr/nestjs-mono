@@ -12,16 +12,15 @@ export class PostService {
       select: {
         title: true,
         author_id: true,
-        last_update: true,
         content: true,
-        category: true,
+        // category: true,
         id: true,
       },
       where: {
         title: {
           search,
         },
-        deleted: false,
+        deleted: null,
       },
       skip: page === 1 ? 0 : page * size,
       take: size,

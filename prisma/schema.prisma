@@ -4,39 +4,39 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_MYSQL_URL")
 }
 
 model User {
-  id             Int       @id @default(autoincrement())
-  email          String    @unique
-  name           String
-  profile        Profile?
-  hashedPassword String
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  posts          Post[]
-  deleted        DateTime?
+  id              Int       @id @default(autoincrement())
+  email           String    @unique
+  name            String
+  profile         Profile?
+  hashed_password String
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+  posts           Post[]
+  deleted         DateTime?
 }
 
 model Profile {
-  id     Int    @id @default(autoincrement())
-  bio    String
-  user   User   @relation(fields: [userId], references: [id])
-  userId Int    @unique
+  id      Int    @id @default(autoincrement())
+  bio     String
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id Int    @unique
 }
 
 model Post {
   id         Int        @id @default(autoincrement())
   title      String?
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
   content    String
   published  Boolean    @default(false)
   deleted    DateTime?
-  author     User?      @relation(fields: [authorId], references: [id])
-  authorId   Int
+  author     User?      @relation(fields: [author_id], references: [id])
+  author_id  Int
   categories Category[]
 }
 
