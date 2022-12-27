@@ -3,7 +3,7 @@ import { KafkaService } from './kafka.service';
 
 @Controller('kafka')
 export class KafkaController {
-  constructor(private readonly kafkaServices: KafkaService) { }
+  constructor(private readonly kafkaServices: KafkaService) {}
 
   @Get('producer')
   produce(@Body() body: any) {

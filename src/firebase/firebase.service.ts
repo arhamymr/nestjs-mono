@@ -27,7 +27,8 @@ export class FirebaseService {
       !projectId ||
       !storageBucket ||
       !messagingSenderId ||
-      !measurementId) {
+      !measurementId
+    ) {
       throw new Error('Environment variables are missing');
     }
 
@@ -42,4 +43,3 @@ export class FirebaseService {
     });
   }
 }
-

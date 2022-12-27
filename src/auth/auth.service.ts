@@ -6,7 +6,7 @@ import * as argon from 'argon2';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwtService: JwtService) { }
+  constructor(private prisma: PrismaService, private jwtService: JwtService) {}
 
   async findUsers(email: string) {
     return await this.prisma.user.findUnique({ where: { email } });
@@ -34,7 +34,7 @@ export class AuthService {
     const message = email + ' signup succesfully';
 
     return {
-      status: HttpStatus.OK,
+      statusCode: HttpStatus.OK,
       data,
       message,
     };

@@ -1,9 +1,5 @@
 import { Injectable, OnApplicationShutdown } from '@nestjs/common';
-import {
-  ConsumerRunConfig,
-  Consumer,
-  Kafka,
-} from 'kafkajs';
+import { ConsumerRunConfig, Consumer, Kafka } from 'kafkajs';
 
 @Injectable()
 export class ConsumerService implements OnApplicationShutdown {
@@ -21,7 +17,7 @@ export class ConsumerService implements OnApplicationShutdown {
       await consumer.run(config);
       this.consumers.push(consumer);
     } catch (error) {
-      console.log('kafka consumer: something wrong' + error)
+      console.log('kafka consumer: something wrong' + error);
     }
   }
 

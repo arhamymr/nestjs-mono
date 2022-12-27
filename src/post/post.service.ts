@@ -4,7 +4,7 @@ import { IPostParams, IPostPayload } from './post.interfaces';
 
 @Injectable()
 export class PostService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async findAllData(params: IPostParams) {
     const { page, size, search } = params;

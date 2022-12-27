@@ -6,4 +6,4 @@ import { PostController } from './post.controller';
   controllers: [PostController],
   providers: [PostService],
 })
-export class G2gArticleModule { }
+export class G2gArticleModule {}

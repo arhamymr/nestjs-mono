@@ -16,9 +16,7 @@ import { MediaDto } from './media.dto';
 @Controller('media')
 @UseGuards(JwtAuthGuard)
 export class MediaController {
-  constructor(
-    private readonly mediaService: MediaService
-  ) { }
+  constructor(private readonly mediaService: MediaService) {}
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))

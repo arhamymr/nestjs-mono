@@ -3,7 +3,7 @@ import { StorageService } from 'src/firebase/storage.service';
 
 @Injectable()
 export class MediaService {
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService) {}
 
   async upload(file: Buffer, filename: string) {
     const ref = 'assets/' + filename;

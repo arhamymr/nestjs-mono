@@ -6,7 +6,6 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor() {
     super();
     this.$use(async (params, next) => {
-
       // if (params.action !== 'delete') {
       //   params.args = {
       //     ...params.args,

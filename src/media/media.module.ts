@@ -7,4 +7,4 @@ import { StorageService } from 'src/firebase/storage.service';
   controllers: [MediaController],
   providers: [MediaService, StorageService],
 })
-export class MediaModule { }
+export class MediaModule {}

@@ -16,7 +16,7 @@ import { PostDto } from './post.dto';
 @Controller('post')
 @UseGuards(JwtAuthGuard)
 export class PostController {
-  constructor(private readonly postService: PostService) { }
+  constructor(private readonly postService: PostService) {}
 
   @Get()
   findAll(

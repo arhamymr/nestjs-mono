@@ -19,7 +19,6 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
     } catch {
       console.log('kafka Producer: something wrong');
     }
-
   }
 
   async produce(record: ProducerRecord) {
