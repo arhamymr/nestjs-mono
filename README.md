@@ -5,7 +5,6 @@ Experimental Backend API, i created this project using nest.js for learning impl
 #### Common Feature 
 - Authentication and Authorization
 - CRUD 
-- Media (file management)
 - JSON Web Token
 
 #### Message Broker 
@@ -17,3 +16,7 @@ Experimental Backend API, i created this project using nest.js for learning impl
 
 #### Firebase
 - Storage
+
+### Media 
+- Media CRUD 
+- image Converter (Webp)
