@@ -23,10 +23,10 @@ export class StorageService extends FirebaseService {
     super(configService);
     this.storage = getStorage(this.app);
   }
-  async upload(file: Buffer, refname: string) {
+  async upload(file: Buffer, refname: string, metadata) {
     const uploadRef = await ref(this.storage, refname);
     try {
-      await uploadBytes(uploadRef, file);
+      await uploadBytes(uploadRef, file, metadata);
       const downloadURL = await getDownloadURL(uploadRef);
       return downloadURL;
     } catch (error) {
