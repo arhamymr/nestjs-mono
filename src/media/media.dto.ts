@@ -9,5 +9,9 @@ export class DeleteMediaDto {
 export class UploadMediaDto {
   @IsString()
   quality: string;
+
+  @IsString()
+  dir: string;
+
   convert: 'webp';
 }

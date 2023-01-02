@@ -1,9 +1,4 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
 import {
   deleteObject,
@@ -13,7 +8,6 @@ import {
   uploadBytes,
 } from 'firebase/storage';
 import { ConfigService } from '@nestjs/config';
-// import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class StorageService extends FirebaseService {
@@ -23,6 +17,7 @@ export class StorageService extends FirebaseService {
     super(configService);
     this.storage = getStorage(this.app);
   }
+
   async upload(file: Buffer, refname: string, metadata) {
     const uploadRef = await ref(this.storage, refname);
     try {

@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { StorageService } from 'src/firebase/storage.service';
 import { SharpService } from './sharp.service';
-import { IUpload } from './media.interface';
+import { IQueryUpload, IConverter } from './media.interface';
 @Injectable()
 export class MediaService {
   constructor(
@@ -9,22 +9,66 @@ export class MediaService {
     private sharpService: SharpService,
   ) {}
 
-  async upload(file: Express.Multer.File, query: IUpload) {
-    console.log(query);
-    const { originalname, buffer } = file;
+  async refconverter({ output, dir, originalname }) {
+    const name = `${originalname.split('.')[0]}.${output}`;
+    return `${dir}/${name}`;
+  }
 
-    const filename = originalname.split('.')[0] + '.webp';
-    const ref = `assets/${filename}`;
-
-    const metadata = {
-      contentType: 'image/webp',
-    };
-
-    const convertFile = await this.sharpService.convertToWebP({
-      buffer,
+  async convert({ file, dir, output }: IConverter) {
+    const ref = await this.refconverter({
+      output,
+      dir,
+      originalname: file.originalname,
     });
 
-    const url = await this.storageService.upload(convertFile, ref, metadata);
+    const metadata = {
+      contentType: `image/${output}`,
+    };
+
+    const updateFileObject = {
+      originalname: file.originalname.split('.')[0] + `.${output}`,
+    };
+
+    return {
+      metadata,
+      ref,
+      file: {
+        ...file,
+        ...updateFileObject,
+        buffer: await this.sharpService.convert({
+          buffer: file.buffer,
+          output,
+        }),
+      },
+    };
+  }
+
+  async upload(file: Express.Multer.File, query: IQueryUpload) {
+    const { convert, dir } = query;
+    const { originalname, buffer, mimetype } = file;
+
+    // original file attrb
+    let filename = originalname;
+    let ref = `${dir}/${filename}`;
+    let tempFile = buffer;
+    let metadata = {
+      contentType: mimetype,
+    };
+
+    if (convert) {
+      const converted = await this.convert({
+        file,
+        dir,
+        output: convert,
+      });
+
+      ref = converted.ref;
+      metadata = converted.metadata;
+      filename = converted.file.originalname;
+      tempFile = converted.file.buffer;
+    }
+
+    const url = await this.storageService.upload(tempFile, ref, metadata);
 
     return {
       ref,
