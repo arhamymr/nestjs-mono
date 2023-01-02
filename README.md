@@ -17,6 +17,6 @@ Experimental Backend API, i created this project using nest.js for learning impl
 #### Firebase
 - Storage
 
-### Media 
-- Media CRUD 
+### Files Management 
+- Files CRUD 
 - image Converter (Webp)
