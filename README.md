@@ -19,5 +19,5 @@ Experimental Backend API, i created this project using nest.js for learning impl
 
 ### Files Management 
 - Files CRUD 
-- Image Converter (Webp)
+- Image Converter (Webp, Jpeg) #To-do support (Avif, Png, Gif, Tiff) 
 - Image resize
