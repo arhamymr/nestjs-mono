@@ -9,6 +9,7 @@ export class SharpService {
       case 'webp':
         return await sharp(buffer).webp({ lossless: true, quality }).toBuffer();
       case 'jpeg':
+        // return full hight quality jpeg image;
         return await sharp(buffer)
           .jpeg({
             quality: 100,
