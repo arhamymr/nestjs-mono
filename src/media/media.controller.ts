@@ -12,7 +12,7 @@ import { MediaService } from './media.service';
 import { Express } from 'express';
 import { JwtAuthGuard } from 'src/auth/auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { DeleteMediaDto } from './media.dto';
+import { DeleteMediaDto, UploadMediaDto } from './media.dto';
 
 @Controller('media')
 @UseGuards(JwtAuthGuard)
@@ -21,7 +21,10 @@ export class MediaController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async upload(@UploadedFile() file: Express.Multer.File, @Query() query: any) {
+  async upload(
+    @UploadedFile() file: Express.Multer.File,
+    @Query() query: UploadMediaDto,
+  ) {
     return this.mediaService.upload(file, query);
   }
 

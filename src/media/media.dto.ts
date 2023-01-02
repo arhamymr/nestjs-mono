@@ -1,5 +1,6 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsEnum, IsString } from 'class-validator';
 
+const acceptFile = ['jpeg', 'webp'];
 export class DeleteMediaDto {
   @IsNotEmpty()
   @IsString()
@@ -8,10 +9,13 @@ export class DeleteMediaDto {
 
 export class UploadMediaDto {
   @IsString()
-  quality: string;
+  quality: number;
 
   @IsString()
   dir: string;
 
-  convert: 'webp';
+  @IsEnum(acceptFile, {
+    message: 'please use this target extention :' + acceptFile.concat(','),
+  })
+  convert?: 'webp' | 'jpeg';
 }

@@ -1,7 +1,8 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { StorageService } from 'src/firebase/storage.service';
 import { SharpService } from './sharp.service';
-import { IQueryUpload, IConverter } from './media.interface';
+import { IConverter } from './media.interface';
+import { UploadMediaDto } from './media.dto';
 @Injectable()
 export class MediaService {
   constructor(
@@ -43,7 +44,7 @@ export class MediaService {
     };
   }
 
-  async upload(file: Express.Multer.File, query: IQueryUpload) {
+  async upload(file: Express.Multer.File, query: UploadMediaDto) {
     const { convert, dir } = query;
     const { originalname, buffer, mimetype } = file;
 

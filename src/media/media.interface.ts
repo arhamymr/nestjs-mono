@@ -12,5 +12,5 @@ export interface IQueryUpload {
 export interface IConverter {
   file: Express.Multer.File;
   dir: string;
-  output: 'webp';
+  output: 'webp' | 'jpeg';
 }
