@@ -1,3 +1,4 @@
+import { WebsocketModule } from './websocket/websocket.module';
 import { FirebaseModule } from './firebase/firebase.module';
 import { KafkaModule } from './kafka/kafka.module';
 import { Module } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    WebsocketModule,
     FirebaseModule,
     KafkaModule,
     ServeStaticModule.forRoot({
