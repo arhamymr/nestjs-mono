@@ -3,7 +3,8 @@
 Experimental Backend API, i created this project using nest.js for learning implements backend stuff
 
 #### Common Feature 
-- Authentication and Authorization
+- Authentication 
+- Authorization # todo RBAC (Role Base Access Controll)
 - CRUD 
 - JSON Web Token
 - Http Module
@@ -21,5 +22,5 @@ Experimental Backend API, i created this project using nest.js for learning impl
 
 ### Files Management 
 - Files CRUD 
-- Image Converter (Webp, Jpeg) #To-do support (Avif, Png, Gif, Tiff) 
+- Image Converter (Webp, Jpeg) # todo (Avif, Png, Gif, Tiff) 
 - Image resize
