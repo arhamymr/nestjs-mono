@@ -1,4 +1,4 @@
-## Mono Backend API
+## Nestjs-Mono
 
 Experimental Backend API, i created this project using nest.js for learning implements backend stuff
 
