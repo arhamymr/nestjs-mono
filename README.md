@@ -6,6 +6,8 @@ Experimental Backend API, i created this project using nest.js for learning impl
 - Authentication and Authorization
 - CRUD 
 - JSON Web Token
+- Http Module
+- Websocket 
 
 #### Message Broker 
 - Kafka
