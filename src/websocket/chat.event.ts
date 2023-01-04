@@ -18,7 +18,8 @@ import {
 } from '@nestjs/websockets';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Server } from 'socket.io';
+import { Socket, Server } from 'socket.io';
+import { ChatService } from './chat.service';
 
 @WebSocketGateway({
   cors: {
@@ -26,18 +27,15 @@ import { Server } from 'socket.io';
   },
 })
 export class EventsGateway {
+  constructor(private chatService: ChatService) {}
+
   @WebSocketServer()
   server: Server;
 
-  @SubscribeMessage('events')
-  findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
-    return from([1, 2, 3]).pipe(
-      map((item) => ({ event: 'events', data: item })),
-    );
-  }
-
-  @SubscribeMessage('identity')
-  async identity(@MessageBody() data: number): Promise<number> {
-    return data;
+  @SubscribeMessage('sendMessage')
+  async handleSendMessage(
+    @MessageBody() payload: any,
+  ): Promise<Observable<WsResponse<number>>> {
+    return this.chatService.createMessage(payload);
   }
 }
