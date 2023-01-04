@@ -1,6 +1,6 @@
 ## Nestjs-Mono
 
-Experimental Project, i creating this using nest.js for learning backend development
+Experimental Project, build with nest.js for learning backend development
 #### Common Feature 
 - Authentication 
 - Authorization # todo RBAC (Role Base Access Control)
