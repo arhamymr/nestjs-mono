@@ -6,11 +6,12 @@
       socket.on('connect', function() {
         console.log('Connected');
 
-        socket.emit('sendMessage', { text: 'test' }, 
+        socket.emit('sendMessage', { email: "arham@gmail.com" , text: 'message from client' }, 
         response => console.log(response, "response")
         );
       });
       socket.on('sendMessage', function(data) {
+        console.log("check method on", data)
         console.log('event', data);
       });
       socket.on('exception', function(data) {

@@ -16,9 +16,11 @@ import {
   WebSocketServer,
   WsResponse,
 } from '@nestjs/websockets';
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Socket, Server } from 'socket.io';
+// import { Observable } from 'rxjs';
+// import { map } from 'rxjs/operators';
+import { Server } from 'socket.io';
+import { ChatDto } from './chat.dto';
+// import { IChat } from './chat.interfaces';
 import { ChatService } from './chat.service';
 
 @WebSocketGateway({
@@ -34,8 +36,8 @@ export class EventsGateway {
 
   @SubscribeMessage('sendMessage')
   async handleSendMessage(
-    @MessageBody() payload: any,
-  ): Promise<Observable<WsResponse<number>>> {
+    @MessageBody() payload: ChatDto,
+  ): Promise<WsResponse<any>> {
     return this.chatService.createMessage(payload);
   }
 }
