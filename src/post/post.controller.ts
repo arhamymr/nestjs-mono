@@ -33,12 +33,12 @@ export class PostController {
   }
 
   @Delete(':id')
-  async remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.postService.remove(id);
   }
 
   @Post('create')
-  async create(@Body('') data: PostDto) {
+  create(@Body('') data: PostDto) {
     return this.postService.create(data);
   }
 }

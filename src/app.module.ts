@@ -1,3 +1,4 @@
+import { HttpClientModule } from './httpClient/httpclient.module';
 import { WebsocketModule } from './websocket/chat.module';
 import { FirebaseModule } from './firebase/firebase.module';
 import { KafkaModule } from './kafka/kafka.module';
@@ -10,8 +11,10 @@ import { MediaModule } from './media/media.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
+
 @Module({
   imports: [
+    HttpClientModule,
     WebsocketModule,
     FirebaseModule,
     KafkaModule,
@@ -27,6 +30,5 @@ import { ConfigModule } from '@nestjs/config';
     G2gArticleModule,
     MediaModule,
   ],
-  controllers: [],
 })
 export class AppModule {}
