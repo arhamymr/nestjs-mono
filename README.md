@@ -28,16 +28,13 @@ Experimental Project, build with nest.js for learning backend development
 
 - Storage
 
-<<<<<<< HEAD
-
 ### Files Management
 
 - Files CRUD
-- # Image Converter (Webp, Jpeg) # todo (Avif, Png, Gif, Tiff)
+- Image Converter (Webp, Jpeg) # todo (Avif, Png, Gif, Tiff)
 
 ### Files Management
 
 - Files CRUD
 - Image Converter (Webp, Jpeg) #To-do support (Avif, Png, Gif, Tiff)
-  > > > > > > > 7d7bd82 (feat: Add helmet for security header)
 - Image resize
