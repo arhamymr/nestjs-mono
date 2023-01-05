@@ -31,10 +31,5 @@ Experimental Project, build with nest.js for learning backend development
 ### Files Management
 
 - Files CRUD
-- Image Converter (Webp, Jpeg) # todo (Avif, Png, Gif, Tiff)
-
-### Files Management
-
-- Files CRUD
 - Image Converter (Webp, Jpeg) #To-do support (Avif, Png, Gif, Tiff)
 - Image resize
