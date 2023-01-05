@@ -10,13 +10,16 @@ export class HttpClientService {
   getAllProduct(): Observable<AxiosResponse<any>> {
     const response = this.httpService
       .get('https://dummyjson.com/products')
-      .pipe(map((res) => res.data))
+      .pipe(
+        map((res) => {
+          return res.data;
+        }),
+      )
       .pipe(
         catchError((error: AxiosError) => {
           throw 'An error happened! :' + error;
         }),
       );
-    console.log(response, 'response');
     return response;
   }
 }

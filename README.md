@@ -1,25 +1,43 @@
 ## Nestjs-Mono
 
 Experimental Project, build with nest.js for learning backend development
-#### Common Feature 
-- Authentication 
+
+#### Common Feature
+
+- Authentication
 - Authorization # todo RBAC (Role Base Access Control)
-- CRUD 
+- CRUD
 - JSON Web Token
 - Http Module
-- Websocket 
+- Websocket
 
-#### Message Broker 
+### Security
+
+- Helmet
+
+#### Message Broker
+
 - Kafka
 
-#### Databases 
+#### Databases
+
 - MySQL
 - Prisma (ORM)
 
 #### Firebase
+
 - Storage
 
-### Files Management 
-- Files CRUD 
-- Image Converter (Webp, Jpeg) # todo (Avif, Png, Gif, Tiff) 
+<<<<<<< HEAD
+
+### Files Management
+
+- Files CRUD
+- # Image Converter (Webp, Jpeg) # todo (Avif, Png, Gif, Tiff)
+
+### Files Management
+
+- Files CRUD
+- Image Converter (Webp, Jpeg) #To-do support (Avif, Png, Gif, Tiff)
+  > > > > > > > 7d7bd82 (feat: Add helmet for security header)
 - Image resize
